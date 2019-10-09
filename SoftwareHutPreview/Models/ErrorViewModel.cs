@@ -1,5 +1,3 @@
-using System;
-
 namespace SoftwareHutPreview.Models
 {
     public class ErrorViewModel
