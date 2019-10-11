@@ -17,14 +17,15 @@ namespace SoftwareHutPreview.Persistence
         private void SeedData(SoftwareHutPreviewDbContext context)
         {
             context.Database.EnsureCreated();
-            if (!context.Products.Any())
-            {
-                SeedProducts(context);
-            }
             if (!context.Categories.Any())
             {
                 SeedCategories(context);
             }
+            if (!context.Products.Any())
+            {
+                SeedProducts(context);
+            }
+        
         }
 
         private void SeedCategories(SoftwareHutPreviewDbContext context)
