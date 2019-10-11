@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SoftwareHutPreview.Application.Product.ViewModels;
 
 namespace SoftwareHutPreview.Application.Product.Queries.GetProduct
 {

@@ -1,8 +1,54 @@
-﻿@{
+﻿@model IList<SoftwareHutPreview.Application.Product.ViewModels.ProductViewModel>;
+@{
     ViewData["Title"] = "Zarządzanie produktami";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="panel panel-default">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Opis
+                </th>
+                <th>
+                    Kategoria
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                   
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" title="Szczegóły" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                            <span>Szczegóły</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

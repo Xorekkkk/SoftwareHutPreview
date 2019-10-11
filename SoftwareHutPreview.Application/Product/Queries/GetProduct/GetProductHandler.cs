@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SoftwareHutPreview.Application.Product.ViewModels;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Application.Product.Queries.GetProduct
