@@ -21,6 +21,9 @@ namespace SoftwareHutPreview
                 try
                 {
                     var context = scope.ServiceProvider.GetService<SoftwareHutPreviewDbContext>();
+
+                    context.Database.EnsureDeleted();
+
                     context.Database.Migrate();
 
                     SoftwareHutPreviewInitializer.Initialize(context);
