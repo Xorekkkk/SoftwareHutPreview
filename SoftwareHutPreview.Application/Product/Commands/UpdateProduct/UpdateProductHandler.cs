@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SoftwareHutPreview.Application.Product.ViewModels;
+using SoftwareHutPreview.Application.Exceptions;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
@@ -26,6 +22,11 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
         {
 
             var product = request.Adapt<Domain.Entities.Product>();
+            if (product == null)
+            {
+                throw new NotFoundException(nameof(Product), request);
+            }
+
             var entity = await _context.Products.SingleOrDefaultAsync(c => c.Id == product.Id, cancellationToken);
             var category = await _context.Categories.FindAsync(product.Category.Id);
 

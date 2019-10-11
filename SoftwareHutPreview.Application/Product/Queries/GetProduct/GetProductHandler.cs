@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SoftwareHutPreview.Application.Exceptions;
 using SoftwareHutPreview.Application.Product.ViewModels;
 using SoftwareHutPreview.Persistence;
 
@@ -23,7 +24,10 @@ namespace SoftwareHutPreview.Application.Product.Queries.GetProduct
                 .Include(c => c.Category)
                 .Where(x => x.Id == request.Id)
                 .SingleAsync(cancellationToken);
-
+            if (product == null)
+            {
+                throw new NotFoundException(nameof(Product), request);
+            }
             return  product.Adapt<ProductViewModel>();
         }
     }
