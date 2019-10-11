@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Reflection;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SoftwareHutPreview.Application.Product.Queries.GetProduct;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview
@@ -24,6 +27,8 @@ namespace SoftwareHutPreview
             services.AddDbContext<SoftwareHutPreviewDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("shDB")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMediatR(typeof(GetProductHandler).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
