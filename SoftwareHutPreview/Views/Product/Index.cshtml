@@ -61,6 +61,9 @@
                     <a asp-action="Delete" ajaxy asp-route-id="@item.Id" title="Delete" onclick="return confirm('Jestes pewien ze chcesz usunąć ten produkt?')" class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash">Usuń</span>
                     </a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil">Edytuj</span>
+                    </a>
                 </td>
             </tr>
         }
