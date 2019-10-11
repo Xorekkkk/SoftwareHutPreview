@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
 using SoftwareHutPreview.Application.Product.ViewModels;
 
 namespace SoftwareHutPreview.Application.Product.Commands.CreateProduct
