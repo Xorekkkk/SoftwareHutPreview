@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareHutPreview.Application.Product.Commands.CreateProduct;
+using SoftwareHutPreview.Application.Product.Commands.DeleteProduct;
 using SoftwareHutPreview.Application.Product.Queries.GetAllProducts;
 using SoftwareHutPreview.Application.Product.Queries.GetProduct;
 using SoftwareHutPreview.Application.Product.ViewModels;
@@ -32,6 +33,14 @@ namespace SoftwareHutPreview.Api.Controllers
             await Mediator.Send(command);
 
             return View("Index", await Mediator.Send(new GetAllProductsQuery()));
+        }
+
+        [HttpPost("{id}"), ActionName("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteProductCommand { Id = id });
+
+            return NoContent();
         }
     }
 }
