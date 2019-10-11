@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SoftwareHutPreview.Application.Product.Commands.CreateProduct;
 using SoftwareHutPreview.Application.Product.Commands.DeleteProduct;
+using SoftwareHutPreview.Application.Product.Commands.UpdateProduct;
 using SoftwareHutPreview.Application.Product.Queries.GetAllProducts;
 using SoftwareHutPreview.Application.Product.Queries.GetProduct;
 using SoftwareHutPreview.Application.Product.ViewModels;
@@ -41,6 +42,21 @@ namespace SoftwareHutPreview.Api.Controllers
             await Mediator.Send(new DeleteProductCommand { Id = id });
 
             return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductViewModel>> Edit(int id)
+        {
+
+            return View("Edit", await Mediator.Send(new GetProductQuery() { Id = id }));
+        }
+
+        [HttpPost("{id}"), ActionName("Edit")]
+        public async Task<ActionResult<ProductViewModel>> Edit([FromForm]UpdateProductCommand command)
+        {
+            await Mediator.Send(command);
+
+            return View("Index", await Mediator.Send(new GetAllProductsQuery()));
         }
     }
 }
