@@ -1,4 +1,4 @@
-﻿namespace SoftwareHutPreview.Application.Product.Queries.GetProduct
+﻿namespace SoftwareHutPreview.Application.Product.ViewModels
 {
     public class CategoryViewModel
     {
