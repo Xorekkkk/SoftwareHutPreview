@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SoftwareHutPreview.Application.Category.Queries.GetAllCategories;
@@ -13,12 +14,12 @@ namespace SoftwareHutPreview.Api.Controllers
 {
     public class ProductController : BaseController
     {
-
         [HttpGet]
         public async Task<ActionResult<ProductViewModel>> Index()
         {
             return View("Index", await Mediator.Send(new GetAllProductsQuery()));
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductViewModel>> Details(int id)
         {
@@ -36,6 +37,13 @@ namespace SoftwareHutPreview.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm]CreateProductCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                var a = await Mediator.Send(new GetAllCategoriesQuery());
+                ViewData["Categories"] = new SelectList(a, "Id", "Name");
+
+                return View(command);
+            }
             await Mediator.Send(command);
 
             return View("Index", await Mediator.Send(new GetAllProductsQuery()));
@@ -61,6 +69,13 @@ namespace SoftwareHutPreview.Api.Controllers
         [HttpPost("{id}"), ActionName("Edit")]
         public async Task<ActionResult<ProductViewModel>> Edit([FromForm]UpdateProductCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                var a = await Mediator.Send(new GetAllCategoriesQuery());
+                ViewData["Categories"] = new SelectList(a, "Id", "Name");
+
+                return View(command.Adapt<ProductViewModel>());
+            }
             await Mediator.Send(command);
 
             return View("Index", await Mediator.Send(new GetAllProductsQuery()));

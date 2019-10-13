@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SoftwareHutPreview.Application.Infrastructure;
+using SoftwareHutPreview.Application.Product.Commands.CreateProduct;
 using SoftwareHutPreview.Application.Product.Queries.GetProduct;
 using SoftwareHutPreview.Persistence;
 
@@ -28,13 +29,9 @@ namespace SoftwareHutPreview
             services.AddDbContext<SoftwareHutPreviewDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("shDB")));
             services.AddMvc(
-                    config =>
-                    {
-                        config.Filters.Add(typeof(ExceptionHandler));
-
-                    })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+                    config => { config.Filters.Add(typeof(ExceptionHandler)); })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
             services.AddMediatR(typeof(GetProductHandler).Assembly.GetTypes());
         }
 
