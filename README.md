@@ -15,3 +15,8 @@ Used CQRS pattern
 
 To run Modify the connectionstring in appsettings ang go!
 
+Plans for future:
+- Improve creation of a selectList
+- Add unit test
+- Create a category CRUD
+- Add search, price filter, pictures for products
