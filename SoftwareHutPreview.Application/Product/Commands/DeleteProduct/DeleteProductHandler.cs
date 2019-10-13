@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using SoftwareHutPreview.Application.Exceptions;
+using SoftwareHutPreview.Application.Infrastructure.Exceptions;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Application.Product.Commands.DeleteProduct

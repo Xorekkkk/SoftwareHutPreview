@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SoftwareHutPreview.Application.Exceptions;
+using SoftwareHutPreview.Application.Infrastructure.Exceptions;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
