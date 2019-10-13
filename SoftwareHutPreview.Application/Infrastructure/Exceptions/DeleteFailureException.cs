@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoftwareHutPreview.Application.Exceptions
+namespace SoftwareHutPreview.Application.Infrastructure.Exceptions
 {
     public class DeleteFailureException : Exception
     {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SoftwareHutPreview.Application.Exceptions;
+using SoftwareHutPreview.Application.Infrastructure.Exceptions;
 using SoftwareHutPreview.Application.Product.ViewModels;
 using SoftwareHutPreview.Persistence;
 

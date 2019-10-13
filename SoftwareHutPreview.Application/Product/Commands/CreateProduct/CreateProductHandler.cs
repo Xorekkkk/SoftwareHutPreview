@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Mapster;
 using MediatR;
-using SoftwareHutPreview.Application.Exceptions;
+using SoftwareHutPreview.Application.Infrastructure.Exceptions;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Application.Product.Commands.CreateProduct
@@ -19,10 +19,7 @@ namespace SoftwareHutPreview.Application.Product.Commands.CreateProduct
         public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = request.Adapt<Domain.Entities.Product>();
-            if (product == null)
-            {
-                throw new NotFoundException(nameof(Product), request);
-            }
+
             var category = await _context.Categories.FindAsync(request.Category.Id);
 
             product.Category = category;
