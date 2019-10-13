@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SoftwareHutPreview.Application.Category.Queries.GetAllCategories;
 using SoftwareHutPreview.Application.Product.Commands.CreateProduct;
 using SoftwareHutPreview.Application.Product.Commands.DeleteProduct;
 using SoftwareHutPreview.Application.Product.Commands.UpdateProduct;
@@ -24,8 +26,11 @@ namespace SoftwareHutPreview.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var a = await Mediator.Send(new GetAllCategoriesQuery());
+            ViewData["Categories"] = new SelectList(a, "Id", "Name");
+
             return View();
         }
         [HttpPost]
@@ -47,6 +52,8 @@ namespace SoftwareHutPreview.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductViewModel>> Edit(int id)
         {
+            var a = await Mediator.Send(new GetAllCategoriesQuery());
+            ViewData["Categories"] = new SelectList(a, "Id", "Name");
 
             return View("Edit", await Mediator.Send(new GetProductQuery() { Id = id }));
         }
