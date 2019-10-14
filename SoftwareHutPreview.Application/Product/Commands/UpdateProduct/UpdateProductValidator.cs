@@ -20,7 +20,6 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .NotNull()
-                .Must(BeUnique).WithMessage("Produkt musi mieć unikalną nazwę.")
                 .MaximumLength(60);
             RuleFor(d => d.Description)
                 .NotEmpty()
@@ -31,11 +30,5 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
                 .GreaterThan(0.0m).WithMessage("Wartość pola cena musi być większa od 0");
 
         }
-        //Bonus
-        private bool BeUnique(CreateProductCommand command, string name, PropertyValidatorContext ctx)
-        {
-            return _context.Products.All(x => x.Name != command.Name);
-        }
-
     }
 }

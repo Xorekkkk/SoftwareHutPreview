@@ -43,9 +43,10 @@ namespace SoftwareHutPreview.Persistence
             var memory = context.Categories.SingleOrDefault(x => x.Name == "Memory");
             context.Products.AddRange(new Product[]
             {
-                new Product(){Name = "Ryzen 4600fx", Description = "Procesor nowej generacji od Amd.", Category = cpus }, 
-                new Product(){Name = "Intel i7-9900k", Description = "Procesor 9 już generacji od intela.",Category = cpus}, 
-                new Product(){Name = "Patriot DDR4 3000 MHz", Description = "Jeden z bestsellerów tego roku.",Category = memory},
+                new Product(){Name = "Ryzen 4600fx", Description = "Procesor nowej generacji od Amd.", Category = cpus, Price = 1900}, 
+                new Product(){Name = "Intel i7-9900k", Description = "Procesor 9 już generacji od intela.",Category = cpus,Price = 1400}, 
+                new Product(){Name = "Patriot DDR4 3000 MHz", Description = "Super wydajny",Category = memory, Price = 400},
+                new Product(){Name = "Patriot DDR4 3300 MHz", Description = "Jeden z bestsellerów tego roku.",Category = memory, Price = 200}
             });
             context.SaveChanges();
         }
