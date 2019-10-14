@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -29,18 +30,17 @@ namespace SoftwareHutPreview.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var a = await Mediator.Send(new GetAllCategoriesQuery());
-            ViewData["Categories"] = new SelectList(a, "Id", "Name");
-
+          await GetCategories();
+         
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromForm]CreateProductCommand command)
         {
+            
             if (!ModelState.IsValid)
             {
-                var a = await Mediator.Send(new GetAllCategoriesQuery());
-                ViewData["Categories"] = new SelectList(a, "Id", "Name");
+              await GetCategories();
 
                 return View(command);
             }
@@ -60,8 +60,7 @@ namespace SoftwareHutPreview.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductViewModel>> Edit(int id)
         {
-            var a = await Mediator.Send(new GetAllCategoriesQuery());
-            ViewData["Categories"] = new SelectList(a, "Id", "Name");
+            await GetCategories();
 
             return View("Edit", await Mediator.Send(new GetProductQuery() { Id = id }));
         }
@@ -71,14 +70,19 @@ namespace SoftwareHutPreview.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var a = await Mediator.Send(new GetAllCategoriesQuery());
-                ViewData["Categories"] = new SelectList(a, "Id", "Name");
+                await GetCategories();
 
                 return View(command.Adapt<ProductViewModel>());
             }
             await Mediator.Send(command);
 
             return View("Index", await Mediator.Send(new GetAllProductsQuery()));
+        }
+
+        private async Task GetCategories()
+        {
+            var a = await Mediator.Send(new GetAllCategoriesQuery());
+            ViewData["Categories"] = new SelectList(a, "Id", "Name");
         }
     }
 }
