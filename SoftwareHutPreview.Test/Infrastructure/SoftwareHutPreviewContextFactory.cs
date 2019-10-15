@@ -20,6 +20,11 @@ namespace SoftwareHutPreview.Test.Infrastructure
 
             context.Database.EnsureCreated();
 
+            context.Categories.Add(new Category { Id = 1, Name = "Cpus" });
+            var cpus = context.Categories.SingleOrDefault();
+            context.Products.AddRange(new[]{new Product() { Name = "Ryzen 4600fx", Description = "Procesor nowej generacji od Amd.", Category = cpus, Price = 1900 },
+                new Product() { Name = "Intel i7-9900k", Description = "Procesor 9 już generacji od intela.", Category = cpus, Price = 1400 }});
+
             context.SaveChanges();
 
             return context;
