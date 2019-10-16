@@ -27,18 +27,15 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
                 throw new NotFoundException(nameof(Product), request);
             }
 
-            var entity = await _context.Products.SingleOrDefaultAsync(c => c.Id == product.Id, cancellationToken);
             var category = await _context.Categories.FindAsync(product.Category.Id);
 
-            entity = product;
+            product.Category = category;
 
-            entity.Category = category;
-
-             _context.Products.Update(entity);
+             _context.Products.Update(product);
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return entity.Id;
+            return product.Id;
         }
     }
 }

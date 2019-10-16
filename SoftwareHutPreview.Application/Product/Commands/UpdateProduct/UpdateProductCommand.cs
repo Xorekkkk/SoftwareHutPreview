@@ -4,5 +4,6 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
 {
     public class UpdateProductCommand : CreateProductCommand
     {
+        public int Id { get; set; }
     }
 }
