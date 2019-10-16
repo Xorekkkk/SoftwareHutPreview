@@ -18,7 +18,7 @@ namespace SoftwareHutPreview.Test.Products.Queries
         {
             var sut = new GetProductHandler(_context);
 
-            var result = await sut.Handle(new GetProductQuery(){Id = 2}, CancellationToken.None);
+            var result = await sut.Handle(new GetProductQuery(){Id = 4}, CancellationToken.None);
 
             result.Name.Should().Contain("Intel");
         }

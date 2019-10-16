@@ -25,7 +25,7 @@ namespace SoftwareHutPreview.Test.Products.Queries
                 product.Should().BeOfType<ProductViewModel>();
             }
 
-            result.Count.Should().Be(2);
+            result.Count.Should().Be(3);
         }
     }
 }
