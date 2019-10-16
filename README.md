@@ -11,12 +11,11 @@ Used CQRS pattern
 - Mapster
 - FluentValidation
 - MediatR
-
+- FLuentAssertions
 
 To run Modify the connectionstring in appsettings ang go!
 
 Plans for future:
-- Improve creation of a selectList
-- Add unit test
-- Create a category CRUD
+- More tests
+- Category CRUD
 - Add search, price filter, pictures for products
