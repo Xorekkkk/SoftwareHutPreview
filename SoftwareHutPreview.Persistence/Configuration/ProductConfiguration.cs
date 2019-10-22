@@ -12,6 +12,9 @@ namespace SoftwareHutPreview.Persistence.Configuration
             builder.Property(x => x.Description).IsRequired().HasMaxLength(60);
             builder.HasOne(f => f.Category)
                 .WithMany(t => t.Products);
+
+            builder.HasOne(f => f.ProductType)
+                .WithMany(t => t.Products);
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareHutPreview.Persistence;
 
 namespace SoftwareHutPreview.Persistence.Migrations
 {
     [DbContext(typeof(SoftwareHutPreviewDbContext))]
-    partial class SoftwareHutPreviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191022084608_AddProductType")]
+    partial class AddProductType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
