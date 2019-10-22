@@ -22,6 +22,7 @@ namespace SoftwareHutPreview.Application.Product.Queries.GetProduct
         {
             var product = await _context.Products
                 .Include(c => c.Category)
+                .Include(y =>y.ProductType)
                 .Where(x => x.Id == request.Id)
                 .SingleAsync(cancellationToken);
             if (product == null)

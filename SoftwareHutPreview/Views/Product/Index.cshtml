@@ -32,6 +32,9 @@
                 Cena
             </th>
             <th>
+                Typ produktu
+            </th>
+            <th>
                    
             </th>
         </tr>
@@ -52,7 +55,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price) zł
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType.Name) 
+                </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id" title="Szczegóły" class="btn btn-primary">
                         <span class="glyphicon glyphicon-floppy-disk"></span>

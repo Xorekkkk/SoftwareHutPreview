@@ -8,6 +8,7 @@ namespace SoftwareHutPreview.Application.Product.Commands.CreateProduct
         public string Name { get; set; }
         public string Description { get; set; }
         public CategoryViewModel Category { get; set; }
+        public ProductTypeViewModel ProductType { get; set; }
         public decimal Price { get; set; }
     }
 }

@@ -28,8 +28,10 @@ namespace SoftwareHutPreview.Application.Product.Commands.UpdateProduct
             }
 
             var category = await _context.Categories.FindAsync(product.Category.Id);
+            var productType = await _context.ProductTypes.FindAsync(product.ProductType.Id);
 
             product.Category = category;
+            product.ProductType = productType;
 
              _context.Products.Update(product);
 

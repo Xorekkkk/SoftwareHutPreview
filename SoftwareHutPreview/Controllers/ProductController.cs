@@ -10,6 +10,7 @@ using SoftwareHutPreview.Application.Product.Commands.UpdateProduct;
 using SoftwareHutPreview.Application.Product.Queries.GetAllProducts;
 using SoftwareHutPreview.Application.Product.Queries.GetProduct;
 using SoftwareHutPreview.Application.Product.ViewModels;
+using SoftwareHutPreview.Application.ProductType.Queries;
 
 namespace SoftwareHutPreview.Api.Controllers
 {
@@ -31,6 +32,7 @@ namespace SoftwareHutPreview.Api.Controllers
         public async Task<IActionResult> Create()
         {
           await GetCategories();
+          await GetProductTypes();
          
             return View();
         }
@@ -41,7 +43,7 @@ namespace SoftwareHutPreview.Api.Controllers
             if (!ModelState.IsValid)
             {
               await GetCategories();
-
+              await GetProductTypes();
                 return View(command);
             }
             await Mediator.Send(command);
@@ -61,7 +63,7 @@ namespace SoftwareHutPreview.Api.Controllers
         public async Task<ActionResult<ProductViewModel>> Edit(int id)
         {
             await GetCategories();
-
+            await GetProductTypes();
             return View("Edit", await Mediator.Send(new GetProductQuery() { Id = id }));
         }
 
@@ -71,7 +73,7 @@ namespace SoftwareHutPreview.Api.Controllers
             if (!ModelState.IsValid)
             {
                 await GetCategories();
-
+                await GetProductTypes();
                 return View(command.Adapt<ProductViewModel>());
             }
             await Mediator.Send(command);
@@ -83,6 +85,12 @@ namespace SoftwareHutPreview.Api.Controllers
         {
             var a = await Mediator.Send(new GetAllCategoriesQuery());
             ViewData["Categories"] = new SelectList(a, "Id", "Name");
+        }
+
+        private async Task GetProductTypes()
+        {
+            var a = await Mediator.Send(new GetAllProductTypeQuery());
+            ViewData["ProductTypes"] = new SelectList(a, "Id", "Name");
         }
     }
 }

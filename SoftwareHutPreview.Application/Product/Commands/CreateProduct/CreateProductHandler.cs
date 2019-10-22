@@ -21,8 +21,10 @@ namespace SoftwareHutPreview.Application.Product.Commands.CreateProduct
             var product = request.Adapt<Domain.Entities.Product>();
 
             var category = await _context.Categories.FindAsync(request.Category.Id);
+            var productType = await _context.ProductTypes.FindAsync(request.ProductType.Id);
 
             product.Category = category;
+            product.ProductType = productType;
 
             _context.Products.Add(product);
 

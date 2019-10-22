@@ -30,6 +30,15 @@
                 <span asp-validation-for="Category.Id" class="text-danger"></span>
             </div>
         </div>
+        
+        <div>
+            <label asp-for="ProductType.Id" class="col-md-2 control-label">Typ produktu</label>
+            <div class="col-md-10">
+                <select class="custom-select" name="ProductType.Id" asp-for="ProductType.Id" asp-items="ViewBag.ProductTypes">
+                </select>
+                <span asp-validation-for="ProductType.Id" class="text-danger"></span>
+            </div>
+        </div>
 
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label asp-for="Price" class="col-md-2 control-label">Cena</label>

@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public decimal Price { get; set; }
         public CategoryViewModel Category { get; set; }
+        public ProductTypeViewModel ProductType { get; set; }
     }
 }
